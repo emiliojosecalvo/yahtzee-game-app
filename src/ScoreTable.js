@@ -5,10 +5,16 @@ import { ones, twos, threes, fours, fives, sixes, threeOfKind, fourOfKind, fullH
 
 
 class ScoreTable extends Component {
-
+  getTotalScore() {
+    const { scores } = this.props;
+    let totalScores = 0;
+    for (let key in scores) {
+      if (scores[key]) totalScores += scores[key];
+    }
+    return totalScores;
+  }
   render() {
     const { scores, doScore } = this.props;
-
     return (
       <div className="ScoreTable">
         <section className="ScoreTable-section">
@@ -66,6 +72,7 @@ class ScoreTable extends Component {
             </tbody>
           </table>
         </section>
+        <h2>TOTAL: {this.getTotalScore()} </h2>
       </div>
     )
   }
